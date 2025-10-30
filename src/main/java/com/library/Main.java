@@ -7,31 +7,31 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class Main {
+    //created array list
 
     static Scanner scanner = new Scanner(System.in);
-    //created array list
-    static ArrayList<String> book = new ArrayList();
+    static ArrayList<String> library = new ArrayList<>();
 
     public static void main(String[] args) {
         initializeBooks();
-        checkedOutTo();
+        libraryMenu();
     }
 
     public static void initializeBooks() {
 
-        book.add(1, "Secrets of the Sith");
-        book.add(2, "Harry Potter");
-        book.add(3, "Captain Underpants");
-        book.add(4, "Dune");
-        book.add(5, "Divergent");
-        book.add(6, "How to kill a mockingbird");
-        book.add(7, "Hunger Games");
-        book.add(8, "Archie's Weird Mysteries");
-        book.add(9, "Holes");
-        book.add(10, "Amulet");
+        library.add("Secrets of the Sith");
+        library.add("Harry Potter");
+        library.add("Captain Underpants");
+        library.add("Dune");
+        library.add("Divergent");
+        library.add( "How to kill a mockingbird");
+        library.add( "Hunger Games");
+        library.add( "Archie's Weird Mysteries");
+        library.add("Holes");
+        library.add("Amulet");
     }
 
-    public static void checkedOutTo() {
+    public static void libraryMenu() {
         String choice = "";
 
         while (!choice.equals("3")) {
@@ -44,14 +44,46 @@ public class Main {
             System.out.println("===============");
             System.out.println("Enter choice: ");
             choice = scanner.nextLine();
-        }
 
-        scanner.close();
+            switch (choice) {
+                case "1":
+                    showAvailableBooks();
+                    break;
+                case "2":
+                    showCheckedOutBooks();
+                    break;
+                case "3":
+                    checkOutBook();
+                    break;
+                case "4":
+                    returnBook();
 
-        //book.remove(1); - removes book from  indicated index line
-        //book.set(1, "Ex Machina"); - replaces book with new book on indicated index line
-        //System.out.println(book); - prints books
-        //System.out.println(book.size()); - prints the quantity of books
-        //Collections.sort(book); - sort books in alphabetical order
+                default:
+                    System.out.println("Invalid input");
+                    break;
+            }
+        }     
+    }
+
+    private static void returnBook() {
+    }
+
+    private static void checkOutBook() {
+        
+    }
+
+    private static void showCheckedOutBooks() {
+        System.out.println("\nChecked Out Books: ");
+        System.out.println("Invalid Input");
+
+    }
+
+    private static void showAvailableBooks() {
+            System.out.println("\nAvailable Books: ");
+            for (String h : library) {
+                if (!h.isCheckedOut()) {
+                    System.out.println(h);
+                }
+            }
         }
     }
