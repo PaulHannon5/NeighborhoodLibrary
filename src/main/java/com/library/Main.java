@@ -53,37 +53,44 @@ public class Main {
                     showCheckedOutBooks();
                     break;
                 case "3":
-                    checkOutBook();
-                    break;
-                case "4":
-                    returnBook();
-
+                    System.out.println("Have a wonderful day.");
                 default:
-                    System.out.println("Invalid input");
+                    System.out.println("Invalid input. Please try again.");
                     break;
             }
         }     
     }
 
-    private static void returnBook() {
-    }
+    private static void showAvailableBooks() {
+        System.out.println("\nAvailable Books: ");
+        boolean found = false;
+        for (int i = 0; i < library.size(); i++) {
+            if (library.get(i).isCheckedOut()) {
+                System.out.println((i + 1) + ".  " + library.get(i).getTitle());
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("No books available.");
+       }
 
-    private static void checkOutBook() {
-        
     }
 
     private static void showCheckedOutBooks() {
         System.out.println("\nChecked Out Books: ");
+        boolean found = false;
+        for (int i = 0; i < library.size(); i++) {
+            if (library.get(i).isCheckedOut()) {
+                System.out.println((i + 1) + ". " + library.get(i).getTitle());
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("No books are currently checked out.");
+
         System.out.println("Invalid Input");
 
     }
 
-    private static void showAvailableBooks() {
-            System.out.println("\nAvailable Books: ");
-            for (String h : library) {
-                if (!h.isCheckedOut()) {
-                    System.out.println(h);
-                }
-            }
-        }
     }
+}
