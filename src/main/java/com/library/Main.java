@@ -10,7 +10,7 @@ public class Main {
     //created array list
 
     static Scanner scanner = new Scanner(System.in);
-    static ArrayList<String> library = new ArrayList<>();
+    static ArrayList<Book> library = new ArrayList<>();
 
     public static void main(String[] args) {
         initializeBooks();
@@ -19,16 +19,16 @@ public class Main {
 
     public static void initializeBooks() {
 
-        library.add("Secrets of the Sith");
-        library.add("Harry Potter");
-        library.add("Captain Underpants");
-        library.add("Dune");
-        library.add("Divergent");
-        library.add( "How to kill a mockingbird");
-        library.add( "Hunger Games");
-        library.add( "Archie's Weird Mysteries");
-        library.add("Holes");
-        library.add("Amulet");
+        library.add(new Book(1,"91-1","Secrets of the Sith"));
+        library.add(new Book(2, "91-2","Harry Potter"));
+        library.add(new Book(3, "91-3","Captain Underpants"));
+        library.add(new Book(4,"91-4", "Dune"));
+        library.add(new Book(5, "91-5","Divergent"));
+        library.add(new Book(6, "91-6","How to kill a mockingbird"));
+        library.add(new Book(7,"91-7","Hunger Games"));
+        library.add(new Book(8, "91-8","Archie's Weird Mysteries"));
+        library.add(new Book(9, "91-9","Holes"));
+        library.add(new Book(10, "92-0","Amulet"));
     }
 
     public static void libraryMenu() {
@@ -40,7 +40,8 @@ public class Main {
             System.out.println("=================");
             System.out.println("1. Show Available Books");
             System.out.println("2. Show Checked Out Books");
-            System.out.println("3. Exit");
+            System.out.println("3. Check Out Book");
+            System.out.println("4. Exit");
             System.out.println("===============");
             System.out.println("Enter choice: ");
             choice = scanner.nextLine();
@@ -53,6 +54,9 @@ public class Main {
                     showCheckedOutBooks();
                     break;
                 case "3":
+                    checkOutBook();
+                    break;
+                case "4":
                     System.out.println("Have a wonderful day.");
                 default:
                     System.out.println("Invalid input. Please try again.");
@@ -63,17 +67,17 @@ public class Main {
 
     private static void showAvailableBooks() {
         System.out.println("\nAvailable Books: ");
-        boolean found = false;
-        for (int i = 0; i < library.size(); i++) {
-            if (library.get(i).isCheckedOut()) {
-                System.out.println((i + 1) + ".  " + library.get(i).getTitle());
-                found = true;
+        int count = 0;
+        for (Book book : library) {
+            if (!book.isCheckedOut()) {
+                count++;
+                System.out.println(count + ". " + book.getTitle());
             }
         }
-        if (!found) {
+        if (count == 0) {
             System.out.println("No books available.");
-       }
-
+            return;
+        }
     }
 
     private static void showCheckedOutBooks() {
@@ -87,10 +91,23 @@ public class Main {
         }
         if (!found) {
             System.out.println("No books are currently checked out.");
-
-        System.out.println("Invalid Input");
+       }
 
     }
-
+    private static void checkOutBook() {
+        showAvailableBooks();
+        System.out.println("Enter book number to check out: ");
+        int choice = Integer.parseInt(scanner.nextLine());
+        int count = 0;
+        for (Book book : library) {
+            if (!book.isCheckedOut()) {
+                count++;
+                if (count == choice) {
+                    book.setCheckedOut(true);
+                    System.out.println("You have checked out: " + book.getTitle());
+                    return;
+                }
+            }
+        }
     }
 }

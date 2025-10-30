@@ -1,11 +1,11 @@
 package com.library;
 
 public class Book {
-    int id;
-    String isbn;
-    String title;
-    boolean isCheckedOut;
-    String checkedOutTo;
+    private int id;
+    private String isbn;
+    private String title;
+    private boolean isCheckedOut;
+    private String checkedOutTo;
 
     //Constructors
     public Book(int id, String isbn, String title, boolean isCheckedOut, String checkedOutTo) {
@@ -14,6 +14,14 @@ public class Book {
         this.title = title;
         this.isCheckedOut = isCheckedOut;
         this.checkedOutTo = checkedOutTo;
+    }
+
+    public Book(int id, String isbn, String title) {
+        this.id = id;
+        this.isbn = isbn;
+        this.title = title;
+        this.isCheckedOut = false;
+        this.checkedOutTo = "";
     }
 
     //Getters and Setters
